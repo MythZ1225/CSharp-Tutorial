@@ -10,33 +10,44 @@ namespace CSharp_Tutorial
     {
         static void Main(string[] args)
         {
-            string answer = "4"; // 電腦設定
-        
+            int answer = 4; // 電腦設定            
+            int guess;
 
             Console.WriteLine("Want play a game?");
             Console.WriteLine("a num between 1~10?");
             Console.WriteLine("what is it?");
 
-            bool userWasNotRight = true;
+            do
+            {
+                string guessString = Console.ReadLine();
+                Console.WriteLine("your guess is " + guessString);
 
-            while (userWasNotRight) {
-                String guess = Console.ReadLine();
+                try
+                {
+                    guess = int.Parse(guessString);
 
-                Console.WriteLine("your guess is " + guess);
-               
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("That's not a Num!");
+                    Console.WriteLine("The Error was " + e);
+                    return;
+                }
                 if (answer == guess)
                 {
                     Console.WriteLine("You R correct");
-                    userWasNotRight = false;
+
+                }
+                else if (answer > guess)
+                {
+                    Console.WriteLine("you need a bigger Num");
                 }
                 else
                 {
-                    Console.WriteLine("Missed! Try again!");
+                    Console.WriteLine("you need a smaller Num");
                 }
             }
-
-            
-
+            while (answer != guess);          
         }
     }
 }
